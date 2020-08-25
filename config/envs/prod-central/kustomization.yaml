@@ -15,23 +15,40 @@
 # Customize the namespace to be the namespace name used for prod-central environment.
 # This change should be made before `appcel env add prod-central`.
 # Once the prod-central environment is added, the namespace shouldn't be changed.
+# Note that when you customize the namespace field, you also need to change
+# REDISHOST to be with the same namespace
+#   REDISHOST=redis-master.<NAMESPACE>.svc.cluster.local
 namespace: prod-central
 
 resources:
 - ../../base/app
-# - ../../base/redis
+- ../../base/redis
 
+# update the image in this patch.
 patches:
 - deployment.yaml
 
 configmapGenerator:
 - name: redishost
   literals:
-  # Replace the host with your production redis host
-  - REDISHOST=10.98.14.45
+  - REDISHOST=redis-master.prod-central.svc.cluster.local
 
-secretGenerator:
-- name: redis
-  literals:
-  # Replace the password with your production redis password
-  - redis-password=password
+# To use a different redis host available at <HOST> with the password <PASSWORD>,
+# make the following change in the current kustomization.yaml.
+#
+# 1. remove - ../../base/redis from the resources. The resources will be
+#    resources:
+#    - ../../base.app
+#
+# 2. change the configmapGenerator to use <HOST>. The configmapGenerator will be
+# configmapGenerator:
+# - name: redishost
+#   literals:
+#    - REDISHOST=<HOST>
+#
+# 3. uncomment the following secretGenerator:
+# secretGenerator:
+# - name: redis
+#   literals:
+#   - redis-password=<PASSWORD
+
