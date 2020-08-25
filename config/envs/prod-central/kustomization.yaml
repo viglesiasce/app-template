@@ -50,5 +50,5 @@ configmapGenerator:
 # secretGenerator:
 # - name: redis
 #   literals:
-#   - redis-password=<PASSWORD
+#   - redis-password=<PASSWORD>
 
