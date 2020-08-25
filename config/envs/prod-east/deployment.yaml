@@ -13,5 +13,6 @@ spec:
         - name: GOTRACEBACK
           value: single
         - name: ENVIRONMENT
-          value: dev
+          value: prod-east
+
 
