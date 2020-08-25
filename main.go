@@ -40,8 +40,7 @@ func main() {
         redisHost := os.Getenv("REDISHOST")
         redisPort := "6379"
         redisAddr := fmt.Sprintf("%s:%s", redisHost, redisPort)
-
-	password := os.Getenv("REDISPASSWORD")
+        password := os.Getenv("REDISPASSWORD")
 
         const maxConnections = 10
         redisPool = redis.NewPool(func() (redis.Conn, error) {
@@ -55,7 +54,7 @@ func main() {
                 port = "8080"
         }
 
-	env := os.Getenv("ENVIRONMENT")
+        env := os.Getenv("ENVIRONMENT")
         log.Printf("Running in environment: %s\n", env)
 
         http.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
