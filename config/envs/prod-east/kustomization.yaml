@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Customize the namespace to be the namespace name used for prod-east environment.
+# This change should be made before `appcel env add prod-east`.
+# Once the prod-east environment is added, the namespace shouldn't be changed.
 namespace: prod-east
 
 resources:
