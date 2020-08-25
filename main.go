@@ -38,11 +38,10 @@ func incrementHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
         redisHost := os.Getenv("REDISHOST")
-        //redisHost := "10.98.13.44"
         redisPort := "6379"
         redisAddr := fmt.Sprintf("%s:%s", redisHost, redisPort)
 
-        password := "LKZse7L2ia"
+	password := os.Getenv("REDISPASSWORD")
 
         const maxConnections = 10
         redisPool = redis.NewPool(func() (redis.Conn, error) {

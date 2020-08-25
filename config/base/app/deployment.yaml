@@ -43,6 +43,11 @@ spec:
             configMapKeyRef:
               name: redishost
               key: REDISHOST
+        - name: REDISPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: redis
+              key: redis-password
         readinessProbe:
           initialDelaySeconds: 1
           periodSeconds: 1

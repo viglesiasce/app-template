@@ -30,3 +30,8 @@ configmapGenerator:
   # Replace the host with your production redis host
   - REDISHOST=10.98.14.45
 
+secretGenerator:
+- name: redis
+  literals:
+  # Replace the password with your production redis password
+  - redis-password=password
