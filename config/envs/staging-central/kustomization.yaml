@@ -28,7 +28,7 @@ patches:
 configmapGenerator:
 - name: redishost
   literals:
-  - REDISHOST=redis-master.staging-central.svc.cluster.local
+  - REDISHOST=redis-master.$(NAMESPACE).svc.cluster.local
 
 vars:
 - name: NAMESPACE
