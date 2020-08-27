@@ -15,9 +15,6 @@
 # Customize the namespace to be the namespace name used for staging-central environment.
 # This change should be made before `appcel env add staging-cental`.
 # Once the staging-cental environment is added, the namespace shouldn't be changed.
-# Note that when you customize the namespace field, you also need to change
-# REDISHOST to be with the same namespace
-#   REDISHOST=redis-master.<NAMESPACE>.svc.cluster.local
 namespace: staging-central
 
 resources:
@@ -32,3 +29,16 @@ configmapGenerator:
 - name: redishost
   literals:
   - REDISHOST=redis-master.staging-central.svc.cluster.local
+
+vars:
+- name: NAMESPACE
+  objref:
+    kind: Service
+    name: redis-master
+    apiVersion: v1
+  fieldref:
+    fieldpath: metadata.namespace
+
+configurations:
+- varReference.yaml
+
